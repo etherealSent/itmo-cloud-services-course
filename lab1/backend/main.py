@@ -40,7 +40,9 @@ app.add_middleware(
     allow_origins=[
         # "http://localhost:5173",
         # "http://87.228.16.92"
-        "https://valdemir.ru"
+        "https://valdemir.ru",
+        "https://www.valdemir.ru"
+
     ],
     allow_credentials=True,
     allow_methods=["*"],
