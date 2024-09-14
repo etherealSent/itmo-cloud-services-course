@@ -41,7 +41,9 @@ app.add_middleware(
         # "http://localhost:5173",
         # "http://87.228.16.92"
         "https://valdemir.ru",
-        "https://www.valdemir.ru"
+        "https://www.valdemir.ru",
+        "https://valdemir.online",
+        "https://www.valdemir.ru",
 
     ],
     allow_credentials=True,
