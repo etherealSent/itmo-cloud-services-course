@@ -1,32 +1,42 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
-  const [items, setItems] = useState(null)
+  const [items, setItems] = useState([]);
 
   const fetchItems = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/items`)
-    .then(r => {setItems(r.data)})
-  }
+      .then(r => {
+        if (Array.isArray(r.data)) {
+          setItems(r.data);
+        } else {
+          setItems([]);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching items:', error);
+        setItems([]);
+      });
+  };
 
   useEffect(() => {
-    fetchItems()
-    setInterval(() => {
-      fetchItems()
-    }, 5000)
-  }, [])
+    fetchItems();
+    const interval = setInterval(() => {
+      fetchItems();
+    }, 5000);
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, []);
 
   return (
     <>
-      {items && items.map(item => {
-        return <span style={{padding:'0px 4px', display: 'flex', flexDirection: 'column', alignItems: 'center'}} key={item.name} className="roll-out">
-        <img src={item.img} alt='logo' width="200" style={{padding:'0px 5px'}}></img>
-        <span>{item.name}</span>
-      </span>
-      })}
+      <h1>Items</h1>
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
