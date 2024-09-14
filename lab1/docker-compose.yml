@@ -20,8 +20,8 @@ services:
       - certbot
     networks:
       - dev
-  
-    certbot:
+
+  certbot:
     image: certbot/certbot
     volumes:
       - './certs:/etc/letsencrypt'
