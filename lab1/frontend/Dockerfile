@@ -5,11 +5,9 @@ RUN npm install
 COPY . .
 
 RUN REACT_APP_API_URL=https://valdemir.ru/api npm run build
-RUN mv build /app/build-valdemir-ru
 
 # Build the application for valdemir.online
 RUN REACT_APP_API_URL=https://valdemir.online/api npm run build
-RUN mv build /app/build-valdemir-online
 
 FROM nginx:stable-alpine
 
