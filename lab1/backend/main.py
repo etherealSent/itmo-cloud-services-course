@@ -43,7 +43,7 @@ app.add_middleware(
         "https://valdemir.ru",
         "https://www.valdemir.ru",
         "https://valdemir.online",
-        "https://www.valdemir.ru",
+        "https://www.valdemir.online",
 
     ],
     allow_credentials=True,
