@@ -15,6 +15,7 @@ services:
     depends_on:
       - backend
       - frontend
+      - certbot
     networks:
       - dev
   
