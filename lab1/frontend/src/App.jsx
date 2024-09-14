@@ -8,7 +8,6 @@ function App() {
   const fetchItems = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/items`)
     .then(r => {setItems(r.data)})
-    .catch(e => console.log(e))
   }
 
   useEffect(() => {
