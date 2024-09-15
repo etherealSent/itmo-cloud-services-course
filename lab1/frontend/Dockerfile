@@ -7,7 +7,7 @@ COPY . .
 RUN REACT_APP_API_URL=https://valdemir.ru/api npm run build
 
 # Build the application for valdemir.online
-RUN REACT_APP_API_URL=https://valdemir.online/api npm run build
+# RUN REACT_APP_API_URL=https://valdemir.online/api npm run build
 
 FROM nginx:stable-alpine
 
