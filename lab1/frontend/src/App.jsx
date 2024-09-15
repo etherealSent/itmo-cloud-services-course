@@ -5,7 +5,7 @@ function App() {
   const [items, setItems] = useState([]);
 
   const fetchItems = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/items`).then(r => {
+    axios.get("https://valdemir.ru/api/items").then(r => {
       setItems(r.data)
     })
   }
@@ -14,7 +14,7 @@ function App() {
     fetchItems()
     setInterval(() => {
       fetchItems()
-    }, 5000)
+    }, 4000)
   }, [])
 
   return (
