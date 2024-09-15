@@ -8,6 +8,8 @@ RUN npm install
 COPY . .
 RUN npm run build
 
+RUN ls -l /app/diste
+
 FROM nginx:stable-alpine
 
 RUN mkdir -p /usr/share/nginx/html/static
