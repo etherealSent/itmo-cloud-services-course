@@ -5,28 +5,28 @@ function App() {
   const [items, setItems] = useState([]);
 
   const fetchItems = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/items`)
-      .then(r => { setItems(r.data) });
-  };
+    axios.get(`${process.env.REACT_APP_API_URL}/items`).then(r => {
+      setItems(r.data)
+    })
+  }
 
   useEffect(() => {
-    fetchItems();
-    const interval = setInterval(() => {
-      fetchItems();
-    }, 5000);
-    return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, []);
+    fetchItems()
+    setInterval(() => {
+      fetchItems()
+    }, 5000)
+  }, [])
 
   return (
     <>
-      <h1>Items</h1>
-      <ul>
-        {items.map(item => (
-          <li key={item.id}>{item.name}</li>
-        ))}
-      </ul>
+      {items && items.map(item => {
+        return <span style={{padding:'0px 4px'}} key={item.name} className="roll-out">
+          <img src={item.img} alt='logo' width="16" style={{padding:'0px 5px'}}></img>
+          <span>{item.name}</span>
+        </span>
+      })}
     </>
-  );
+  )
 }
 
 export default App;
