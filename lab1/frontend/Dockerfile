@@ -14,10 +14,10 @@ RUN npm install
 COPY . .
 
 # Build the application for valdemir.ru
-RUN npm run build:valdemir.ru && mv build /app/build-valdemir-ru
+RUN npx dotenv -e .env.production.valdemir.ru -- vite build && mv build /app/build-valdemir-ru
 
 # Build the application for valdemir.online
-RUN npm run build:valdemir.online && mv build /app/build-valdemir-online
+RUN npx dotenv -e .env.production.valdemir.online -- vite build && mv build /app/build-valdemir-online
 
 # Use an official Nginx image to serve the built files
 FROM nginx:alpine

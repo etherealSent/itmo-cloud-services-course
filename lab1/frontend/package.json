@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:valdemir.ru": "dotenv -e .env.production.valdemir.ru react-scripts build",
-    "build:valdemir.online": "dotenv -e .env.production.valdemir.online react-scripts build",
+    "build:valdemir.ru": "dotenv -e .env.production.valdemir.ru vite build",
+    "build:valdemir.online": "dotenv -e .env.production.valdemir.online vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
