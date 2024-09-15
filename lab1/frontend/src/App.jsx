@@ -6,17 +6,7 @@ function App() {
 
   const fetchItems = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/items`)
-      .then(r => {
-        if (Array.isArray(r.data)) {
-          setItems(r.data);
-        } else {
-          setItems([]);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching items:', error);
-        setItems([]);
-      });
+      .then(r => { setItems(r.data) });
   };
 
   useEffect(() => {
