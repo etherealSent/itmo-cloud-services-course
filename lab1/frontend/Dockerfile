@@ -13,7 +13,6 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-
 # Build the application for valdemir.ru
 RUN npx dotenv -e .env.production.valdemir.ru -- vite build && mv dist /app/build-valdemir-ru
 
@@ -23,13 +22,18 @@ RUN npx dotenv -e .env.production.valdemir.online -- vite build && mv dist /app/
 # Use an official Nginx image to serve the built files
 FROM nginx:alpine
 
+# Copy the built files for valdemir.ru to the Nginx html directory
 COPY --from=build /app/build-valdemir-ru /usr/share/nginx/html/valdemir-ru
 
 # Copy the built files for valdemir.online to the Nginx html directory
 COPY --from=build /app/build-valdemir-online /usr/share/nginx/html/valdemir-online
 
-# # Copy the Nginx configuration file
-# COPY nginx.conf /etc/nginx/nginx.conf
+# Copy the Nginx configuration file
+COPY nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 3000
-CMD [ "nginx", "-g", "daemon off;" ]
+# Expose ports 80 and 443
+EXPOSE 80
+EXPOSE 443
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
