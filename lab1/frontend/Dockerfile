@@ -13,7 +13,7 @@ FROM nginx:stable-alpine
 RUN mkdir -p /usr/share/nginx/html/static
 
 COPY --from=build /app/dist /usr/share/nginx/html
-COPY static/404.html /usr/share/nginx/html/static/404.html
+COPY static/index.html /usr/share/nginx/html/static/index.html
 
 # COPY --from=build nginx.conf /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
