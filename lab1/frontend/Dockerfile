@@ -8,7 +8,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-RUN ls -l /app/diste
+RUN ls -l /app/dist
 
 FROM nginx:stable-alpine
 
