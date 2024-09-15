@@ -28,5 +28,8 @@ COPY --from=build /app/build-valdemir-ru /usr/share/nginx/html/valdemir-ru
 # Copy the built files for valdemir.online to the Nginx html directory
 COPY --from=build /app/build-valdemir-online /usr/share/nginx/html/valdemir-online
 
+# Copy the Nginx configuration file
+COPY nginx.conf /etc/nginx/nginx.conf
+
 EXPOSE 3000
 CMD [ "nginx", "-g", "daemon off;" ]
