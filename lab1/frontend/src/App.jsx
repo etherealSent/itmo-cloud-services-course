@@ -5,7 +5,7 @@ function App() {
   const [items, setItems] = useState([]);
 
   const fetchItems = () => {
-    axios.get("https://valdemir.ru/api/items").then(r => {
+    axios.get("https://valdemir.online/api/items").then(r => {
       setItems(r.data)
     })
   }
