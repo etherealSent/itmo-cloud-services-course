@@ -18,15 +18,17 @@ function App() {
   }, [])
 
   return (
-    <>
+    <div className="items-container">
       {items && items.map(item => {
-        return <span style={{padding:'0px 4px'}} key={item.name} className="roll-out">
-          <img src={item.img} alt='logo' width="16" style={{padding:'0px 5px'}}></img>
-          <span>{item.name}</span>
-        </span>
+        return (
+          <span style={{padding: '0px 4px'}} key={item.name} className="roll-out">
+            <img src={item.img} alt='logo' width="16" style={{padding: '0px 5px'}} />
+            <span>{item.name}</span>
+          </span>
+        );
       })}
-    </>
-  )
+    </div>
+  );
 }
 
 export default App;
