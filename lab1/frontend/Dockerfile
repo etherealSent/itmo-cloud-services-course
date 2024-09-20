@@ -47,7 +47,7 @@ COPY . .
 RUN npm run build
 
 # Verify the build output
-RUN ls -l /app/build
+RUN ls -l /app/dist
 
 # Stage 2: Serve the React application with Nginx
 FROM nginx:stable-alpine
@@ -56,7 +56,7 @@ FROM nginx:stable-alpine
 RUN mkdir -p /usr/share/nginx/html/static
 
 # Copy the built files to the Nginx html directory
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html
 
 # Copy the 404.html file to the Nginx html directory
 COPY static/404.html /usr/share/nginx/html/404.html
