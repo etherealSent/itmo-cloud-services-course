@@ -58,10 +58,8 @@ RUN mkdir -p /usr/share/nginx/html/static
 # Copy the built files to the Nginx html directory
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Copy the 404.html file to the Nginx html directory
 COPY static/404.html /usr/share/nginx/html/404.html
 
-# Set the correct permissions and ownership for the 404.html file
 RUN chmod 644 /usr/share/nginx/html/404.html && \
     chown root:root /usr/share/nginx/html/404.html
 
