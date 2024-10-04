@@ -1,0 +1,6 @@
+.git
+.cache
+
+*.md
+
+settings.json
