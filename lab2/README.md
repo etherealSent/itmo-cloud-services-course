@@ -6,7 +6,7 @@
 
 **неофициальный докер-образ**
 ```
-FROM ubuntu
+FROM someuser/custom-ubuntu:latest
 
 RUN apt-get update && apt-get install -y \
     node \
