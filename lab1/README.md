@@ -171,7 +171,18 @@ http {
 ```
 Указываем пользователя root, один рабочий процесс. Слушаем на порте 80, используем localhost
 
+запуск docker 
+
+![Image alt](https://github.com/etherealSent/itmo-cloud-services-course/raw/main/lab1/screen3.png)
+
+Запускаю на localhost/ "картинки добавил позже" на https не получится запустить, так как вышел срок хостинга доменов
+
 ![Image alt](https://github.com/etherealSent/itmo-cloud-services-course/raw/main/lab1/screen1.png)
+
+localhost/api
+
+![Image alt](https://github.com/etherealSent/itmo-cloud-services-course/raw/main/lab1/screen2.png)
+
 
 ## Шаг 4 создание и настройка сервера
 
