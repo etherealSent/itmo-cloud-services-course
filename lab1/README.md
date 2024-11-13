@@ -171,6 +171,8 @@ http {
 ```
 Указываем пользователя root, один рабочий процесс. Слушаем на порте 80, используем localhost
 
+![Image alt](https://github.com/etherealSent/itmo-cloud-services-course/raw/main/lab1/screen1.png)
+
 ## Шаг 4 создание и настройка сервера
 
 Я решил арендовать сервер у Selectel с самой простой конфигурацией на Ubuntu 24.04 LTS 64-bit, добавил авторизацию через SSH ключ.
