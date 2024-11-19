@@ -1,0 +1,17 @@
+name: Dependency Updates
+
+on:
+  schedule:
+    - cron: '0 5 * * 1' # Каждый понедельник в 5 утра
+
+defaults:
+  run: 
+    working-directory: lab3/CiCdApplication
+jobs:
+  dependency-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Update dependencies
+        run: ./gradlew dependencyUpdates
