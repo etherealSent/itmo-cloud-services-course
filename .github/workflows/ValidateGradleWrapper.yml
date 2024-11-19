@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+defaults:
+  run: 
+    working-directory: lab3/CiCdApplication
 jobs:
   validation:
     name: "Validation"
