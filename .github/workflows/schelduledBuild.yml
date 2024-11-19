@@ -2,63 +2,25 @@ name: Scheduled Builds
 
 on:
   push:
-    branches:
-      - main
-  # schedule:
-  #   - cron: '0 12 * * *' # Каждый день в 12:00
+    schedule:
+      - cron: '0 12 * * *' # Каждый день в 12:00
 
-defaults:
-  run: 
-    working-directory: lab3/CiCdApplication
 jobs:
-  build:
+  build-and-release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-      - name: Set up JDK
+     - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: 'adopt'
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
-      - name: Build APK
-        run: ./gradlew build
-      - name: Save Gradle Cache
-        uses: actions/upload-artifact@v3
-        with:
-          name: gradle-cache
-          path: ~/.gradle/caches
-
-  release:
-    if: ${{ success() }}
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Restore Gradle Cache
-        uses: actions/download-artifact@v3
-        with:
-          name: gradle-cache
-          path: ~/.gradle/caches
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: 17
-          distribution: 'adopt'
-      - name: Change wrapper permissions
-        run: chmod +x ./gradlew
-      - name: Build APK
-        run: ./gradlew assembleRelease
+      - name: Build 
+        working-directory: lab3/CiCdApplication
+        run: ./gradlew build assembleRelease
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
