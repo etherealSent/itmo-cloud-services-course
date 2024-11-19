@@ -29,4 +29,5 @@ jobs:
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@v4
       with:
+          working-directory: lab3/CiCdApplication   
           gradle-version: '7.6'
