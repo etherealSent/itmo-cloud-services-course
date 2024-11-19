@@ -1,11 +1,8 @@
 name: Scheduled Builds
 
 on:
-  push:
-    branches:
-      - main
-    # schedule:
-    #   - cron: '0 12 * * *' # Каждый день в 12:00
+  schedule:
+    - cron: '0 12 * * *' # Каждый день в 12:00
 
 jobs:
   build-and-release:
@@ -27,6 +24,7 @@ jobs:
       - name: Upload APK
         if: success()
         uses: actions/upload-artifact@v3
+        if: ${{ success() }}
         with:
           name: app-release.apk
           path: lab3/CiCdApplication/app/build/outputs/apk/release/app-release.apk
