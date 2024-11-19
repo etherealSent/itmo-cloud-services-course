@@ -25,6 +25,7 @@ jobs:
         working-directory: lab3/CiCdApplication
         run: ./gradlew build assembleRelease
       - name: Upload APK
+        if: success()
         uses: actions/upload-artifact@v3
         with:
           name: app-release.apk
