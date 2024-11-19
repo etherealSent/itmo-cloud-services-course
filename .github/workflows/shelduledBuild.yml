@@ -1,0 +1,29 @@
+name: Scheduled Builds
+
+on:
+  schedule:
+    - cron: '0 12 * * *' # Каждый день в 12:00
+
+defaults:
+  run: 
+    working-directory: lab3/CiCdApplication
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'adopt'
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+      - name: Build APK
+        run: ./gradlew assembleRelease
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release.apk
+          path: app/build/outputs/apk/release/app-release.apk
