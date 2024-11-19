@@ -1,9 +1,10 @@
-name: "Validate Gradle Wrapper"
+name: Validate Gradle Wrapper
+
 on:
   push:
     branches:
       - main
-  pull-request:
+  pull_request:
     branches:
       - main
 
