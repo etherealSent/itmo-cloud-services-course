@@ -19,6 +19,7 @@ jobs:
           java-version: 17
           distribution: 'adopt'
       - name: Change wrapper permissions
+        working-directory: lab3/CiCdApplication
         run: chmod +x ./gradlew
       - name: Build 
         working-directory: lab3/CiCdApplication
