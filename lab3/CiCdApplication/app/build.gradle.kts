@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.cicdapplication"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.cicdapplication"
@@ -50,7 +50,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.android.tools.build.gradle)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
