@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'lab3/CiCdApplication/**'
   pull_request:
     branches:
       - main
+    paths:
+      - 'lab3/CiCdApplication/**'
 
 defaults:
   run: 
@@ -29,9 +33,3 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
-
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: AndroidCICD.apk
-          path: app/build/outputs/apk/debug/app-debug.apk
