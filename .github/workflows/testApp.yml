@@ -19,5 +19,7 @@ jobs:
         with:
           java-version: 17
           distribution: 'adopt'
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
       - name: Run tests
         run: ./gradlew test
