@@ -1,4 +1,4 @@
-name: AndroidApp CiCd
+name: Android Application Build
 
 on:
   push:
