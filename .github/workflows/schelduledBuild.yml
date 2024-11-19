@@ -2,8 +2,10 @@ name: Scheduled Builds
 
 on:
   push:
-    schedule:
-      - cron: '0 12 * * *' # Каждый день в 12:00
+    branches:
+      - main
+    # schedule:
+    #   - cron: '0 12 * * *' # Каждый день в 12:00
 
 jobs:
   build-and-release:
