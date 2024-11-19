@@ -29,4 +29,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app-release.apk
-          path: app/build/outputs/apk/release/app-release.apk
+          path: lab3/CiCdApplication/app/build/outputs/apk/release/app-release.apk
+      - name: Notify Build Success
+        if: success()
+        run: echo "Build succeeded!" 
