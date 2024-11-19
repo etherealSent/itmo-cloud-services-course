@@ -32,6 +32,11 @@ jobs:
         run: chmod +x ./gradlew
       - name: Build APK
         run: ./gradlew build
+      - name: Save Gradle Cache
+        uses: actions/upload-artifact@v3
+        with:
+          name: gradle-cache
+          path: ~/.gradle/caches
 
   release:
     if: ${{ success() }}
@@ -40,6 +45,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Restore Gradle Cache
+        uses: actions/download-artifact@v3
+        with:
+          name: gradle-cache
+          path: ~/.gradle/caches
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
@@ -49,10 +59,8 @@ jobs:
         run: chmod +x ./gradlew
       - name: Build APK
         run: ./gradlew assembleRelease
-      - name: Sign APK
-        run: jarsigner -keystore my-release-key.jks -signedjar app-release-signed.apk app-release.apk alias_name
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
           name: app-release.apk
-          path: app/build/outputs/apk/release/app-release-signed.apk
+          path: app/build/outputs/apk/release/app-release.apk
