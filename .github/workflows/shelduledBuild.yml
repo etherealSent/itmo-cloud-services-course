@@ -1,12 +1,8 @@
 name: Scheduled Builds
 
 on:
-  push:
-    branches:
-      - main   
-
-  # schedule:
-  #   - cron: '0 12 * * *' # Каждый день в 12:00
+  schedule:
+    - cron: '0 12 * * *' # Каждый день в 12:00
 
 defaults:
   run: 
