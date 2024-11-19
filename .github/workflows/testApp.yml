@@ -1,9 +1,8 @@
+name: Regression Testing
+
 on:
-  push:
-    branches:
-      - main
-  # schedule:
-  #   - cron: '0 3 * * *' # Каждый день в 3 утра
+  schedule:
+    - cron: '0 3 * * *' # Каждый день в 3 утра
 
 defaults:
   run: 
