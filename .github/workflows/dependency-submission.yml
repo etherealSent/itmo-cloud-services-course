@@ -19,6 +19,10 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: 17
+    - name: Print working directory
+      run: pwd
+    - name: List files
+      run: ls -l
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@v4
       with:
