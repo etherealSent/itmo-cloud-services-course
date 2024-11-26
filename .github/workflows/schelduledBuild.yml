@@ -29,20 +29,17 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-            
-      - name: Change wrapper permissions
-        run: chmod +x ./gradlew
-        working-directory: lab3/CiCdApplication
-
+        
       - name: Build
         run: ./gradlew build
+        working-directory: lab3/CiCdApplication
 
       - name: Save build outputs
         uses: actions/upload-artifact@v3
         with:
           name: build-output
           path: build
-          
+
   release:
     needs: build
     runs-on: ubuntu-latest
