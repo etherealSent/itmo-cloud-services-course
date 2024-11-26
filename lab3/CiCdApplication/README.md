@@ -72,21 +72,14 @@ name: Scheduled Builds
 
 on:
 ```
-2) Нет path, что приводит к вызовам после любого изменения в репозитории.
+2) Изменение прав в job
 ```
-on:
-  push:
-    branches:
-      - main
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
 ```
 Решение
 ```
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'lab3/CiCdApplication/**'
+chmod +x ./gradlew в репозитории и коммит ./gradlew
 ```
 3) Не используется schedule вместо on action, что приводит к лишним вызовам.
 ```
@@ -162,9 +155,6 @@ jobs:
         with:
           java-version: 17
           distribution: 'adopt'
-      - name: Change wrapper permissions
-        working-directory: lab3/CiCdApplication
-        run: chmod +x ./gradlew
       - name: Build 
         working-directory: lab3/CiCdApplication
         run: ./gradlew build assembleRelease
