@@ -1,106 +1,29 @@
 name: Scheduled Builds
 
 on:
-  push:
-    branches:
-      - main
-  # schedule:
-  #   - cron: '0 12 * * *' # Каждый день в 12:00
+  schedule:
+    - cron: '0 12 * * *' # Каждый день в 12:00
 
 jobs:
-  build:
+  build-and-release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: 'adopt'
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-        
-      - name: Build
-        run: ./gradlew build
+      - name: Build 
         working-directory: lab3/CiCdApplication
-
-      - name: Save build outputs
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-output
-          path: build
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: 17
-          distribution: 'adopt'
-
-      - name: Restore Gradle cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Change wrapper permissions
-        run: chmod +x ./gradlew
-        working-directory: lab3/CiCdApplication
-
-      - name: Download build outputs
-        uses: actions/download-artifact@v3
-        with:
-          name: build-output
-          path: build
-
-      - name: Build release
-        run: ./gradlew assembleRelease
-
+        run: ./gradlew build assembleRelease
       - name: Upload APK
+        if: success()
         uses: actions/upload-artifact@v3
         with:
           name: app-release.apk
-          path: app/build/outputs/apk/release/app-release.apk
-
-  # build-and-release:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-  #     - name: Set up JDK
-  #       uses: actions/setup-java@v4
-  #       with:
-  #         java-version: 17
-  #         distribution: 'adopt'
-  #     - name: Build 
-  #       working-directory: lab3/CiCdApplication
-  #       run: ./gradlew build assembleRelease
-  #     - name: Upload APK
-  #       if: success()
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: app-release.apk
-  #         path: lab3/CiCdApplication/app/build/outputs/apk/release/app-release.apk
-  #     - name: Notify Build Success
-  #       if: success()
-  #       run: echo "Build succeeded!" 
+          path: lab3/CiCdApplication/app/build/outputs/apk/release/app-release.apk
+      - name: Notify Build Success
+        if: success()
+        run: echo "Build succeeded!" 
