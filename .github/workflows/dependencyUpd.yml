@@ -1,11 +1,8 @@
 name: Dependency Updates
 
 on:
-  push:
-    bracnhes:
-      - main
-  # schedule:
-  #   - cron: '0 5 * * 1' # Каждый понедельник в 5 утра
+  schedule:
+    - cron: '0 5 * * 1' # Каждый понедельник в 5 утра
 
 defaults:
   run: 
