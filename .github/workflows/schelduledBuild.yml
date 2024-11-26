@@ -29,6 +29,10 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+            
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+        working-directory: lab3/CiCdApplication
 
       - name: Build
         run: ./gradlew build
@@ -61,6 +65,10 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+        working-directory: lab3/CiCdApplication
 
       - name: Download build outputs
         uses: actions/download-artifact@v3
