@@ -8,6 +8,12 @@ on:
   #   - cron: '0 12 * * *' # Каждый день в 12:00
 
 jobs:
+  wrapper-validation:
+    name: "Validation"
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gradle/wrapper-validation-action@v3
   build:
     runs-on: ubuntu-24.04
     steps:
