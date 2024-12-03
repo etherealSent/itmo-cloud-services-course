@@ -1,8 +1,11 @@
 name: Scheduled Builds
 
 on:
-  schedule:
-    - cron: '0 12 * * *' # Каждый день в 12:00
+  push:
+    branches:
+     - main
+  # schedule:
+  #   - cron: '0 12 * * *' # Каждый день в 12:00
 
 jobs:
   build-and-release:
@@ -17,13 +20,12 @@ jobs:
           distribution: 'adopt'
       - name: Build 
         working-directory: lab3/CiCdApplication
-        run: ./gradlew build assembleRelease
+        run: ./gradlew build 
       - name: Upload APK
-        if: success()
         uses: actions/upload-artifact@v3
         with:
-          name: app-release.apk
-          path: lab3/CiCdApplication/app/build/outputs/apk/release/app-release.apk
-      - name: Notify Build Success
-        if: success()
-        run: echo "Build succeeded!" 
+          name: CiCdApplication.apk
+          path: lab3/CiCdApplication/app/build/outputs/apk/debug/app-debug.apk
+      - name: Notify Build Failed
+        if: failure()
+        run: echo "Build failed!"
