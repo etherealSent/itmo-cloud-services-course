@@ -4,9 +4,15 @@ on:
   push:
     branches:
      - main
-  # schedule:
-  #   - cron: '0 12 * * *' # Каждый день в 12:00
-
+    paths:
+      - '.github/workflows/build.yaml'
+      - 'lab3/CiCdApplication/**'
+  pull_request:
+    paths:
+      - '.github/workflows/build.yaml'
+      - 'lab3/CiCdApplication/**'
+  workflow_dispatch:
+  
 jobs:
   wrapper-validation:
     name: "Wrapper Validation"
