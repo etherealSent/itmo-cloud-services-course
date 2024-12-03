@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - uses: gradle/wrapper-validation-action@v3
+      - uses: gradle/wrapper-validation-action@v3.5.0
   dependency-update:
     runs-on: ubuntu-24.04
     steps:
