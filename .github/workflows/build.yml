@@ -9,12 +9,13 @@ on:
 
 jobs:
   wrapper-validation:
-    name: "validation"
+    name: "Wrapper Validation"
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - uses: gradle/wrapper-validation-action@v3.5.0
+      - uses: gradle/actions/wrapper-validation@v3
   dependency-update:
+    name: "Dependency update"
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
@@ -28,6 +29,7 @@ jobs:
         working-directory: lab3/CiCdApplication
         run: ./gradlew dependencyUpdates
   build:
+    name: "Build"
     runs-on: ubuntu-24.04
     needs: [dependency-update, wrapper-validation]
     steps:
