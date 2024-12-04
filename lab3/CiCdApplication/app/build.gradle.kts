@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
+    compileSdk = libs.versions.compileSdk.get().toInt()
     namespace = "com.example.cicdapplication"
-    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.cicdapplication"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
 
@@ -27,6 +27,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
