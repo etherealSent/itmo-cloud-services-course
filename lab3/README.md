@@ -245,6 +245,15 @@ concurrency:
   cancel-in-progress: true
 ```
 
+5) Изменение прав доступа к файлу в job
+
+```
+- name: Make checksum script executable
+  run: chmod +x ./scripts/checksum.sh
+```
+
+fix: Выполняем команду в среде разработки и убираем эти строчки
+
 Перейдем к файлу .github/workflows/CiCdApplication.yaml
 
 ```
@@ -272,7 +281,7 @@ jobs:
       compose_key_password: ${{ secrets.COMPOSE_KEY_PASSWORD }}
 ```
 
-5) Не указаны пути отслеживаемых директорий для вызова GithubAction
+6) Не указаны пути отслеживаемых директорий для вызова GithubAction
 
 ```
 on:
