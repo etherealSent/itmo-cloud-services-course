@@ -4,8 +4,6 @@ on:
   push:
     branches:
      - main
-    paths-ignore:
-      - 'lab3/CiCdApplication/README.md'
     paths:
       - '.github/workflows/CiCdApplication.yaml'
       - 'lab3/CiCdApplication/**'
@@ -17,12 +15,27 @@ on:
   
 jobs:
   build:
-    uses: ./.github/workflows/build-sample.yml
-    with:
-      name: CiCdApplication
-      path: lab3/CiCdApplication
-      module: app
-    secrets:
-      compose_store_password: ${{ secrets.COMPOSE_STORE_PASSWORD }}
-      compose_key_alias: ${{ secrets.COMPOSE_KEY_ALIAS }}
-      compose_key_password: ${{ secrets.COMPOSE_KEY_PASSWORD }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Check for README.md changes
+        id: check_readme
+        run: |
+          if git diff --name-only HEAD~1 HEAD | grep -q 'lab3/CiCdApplication/README.md'; then
+            echo "README.md was updated. Exiting."
+            exit 0
+          fi
+          
+      - name: Build CiCdApplication
+        env:
+          compose_store_password: ${{ secrets.COMPOSE_STORE_PASSWORD }}
+          compose_key_alias: ${{ secrets.COMPOSE_KEY_ALIAS }}
+          compose_key_password: ${{ secrets.COMPOSE_KEY_PASSWORD }}
+          
+        uses: ./.github/workflows/build-sample.yml
+        with:
+          name: CiCdApplication
+          path: lab3/CiCdApplication
+          module: app
