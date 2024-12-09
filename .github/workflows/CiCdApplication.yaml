@@ -4,6 +4,8 @@ on:
   push:
     branches:
      - main
+    paths-ignore:
+      - 'lab3/CiCdApplication/README.md'
     paths:
       - '.github/workflows/CiCdApplication.yaml'
       - 'lab3/CiCdApplication/**'
