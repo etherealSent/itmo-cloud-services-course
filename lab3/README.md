@@ -392,8 +392,6 @@ jobs:
         with:
           java-version: 17
           distribution: 'zulu'
-      - name: Make checksum script executable
-        run: chmod +x ./scripts/checksum.sh
       - name: Generate cache key
         run: ./scripts/checksum.sh ${{ inputs.path }} checksum.txt
 
