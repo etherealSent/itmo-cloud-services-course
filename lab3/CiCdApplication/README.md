@@ -5,56 +5,16 @@
 2. Написать “хороший” CI/CD, в котором эти плохие практики исправлены
 3. В Readme описать каждую из плохих практик в плохом файле, почему она плохая и как в хорошем она была исправлена, как исправление повлияло на результат
 
-```
-name: Scheduled Builds
+Как работает CI/CD в моем проекте? 
 
-on:
-  push:
-    branches:
-      - main
+CI - это build android приложения
+CD - это release моего приложения на Github
 
-defaults:
-  run: 
-    working-directory: lab3/CiCdApplication
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: 17
-          distribution: 'adopt'
-      - name: Change wrapper permissions
-        run: chmod +x ./gradlew
-      - name: Build APK
-        run: ./gradlew build
 
-  release:
-    if: ${{ success() }}
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: 17
-          distribution: 'adopt'
-      - name: Change wrapper permissions
-        run: chmod +x ./gradlew
-      - name: Build APK
-        run: ./gradlew assembleRelease
-      - name: Upload APK
-        if: ${{ success() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: app-release.apk
-          path: app/build/outputs/apk/release/app-release.apk
-```
+
+
+
+
 
 1) Не указано имя Workflow. Это не удобно при просмотре action, потому что используется путь до файла.
 ```
