@@ -22,10 +22,8 @@ jobs:
         with:
           java-version: 17
           distribution: 'zulu'
-
-    - name: Make gradlew_recursive script executable
+      - name: Make gradlew_recursive script executable
         run: chmod +x ./scripts/gradlew_recursive.sh
-
       - name: Build all projects
         run: ./scripts/gradlew_recursive.sh assembleDebug
 
