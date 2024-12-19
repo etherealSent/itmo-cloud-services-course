@@ -30,6 +30,8 @@ Amazon Simple Email Service (Amazon SES) - облачный поставщик �
 Amazon Simple Notification Service (Amazon SNS) - это управляемая служба, которая обеспечивает асинхронную доставку 
 сообщений от производителей потребителяем.
 
+![image](https://github.com/etherealSent/itmo-cloud-services-course/blob/main/clouds/lab1/image.png)
+
 Cсылка на таблицу:
 https://docs.google.com/spreadsheets/d/1gInen3fQq6-2XFZAha7lh82rOFEZ68vts0X6AktIHnY/edit?usp=sharing
 
