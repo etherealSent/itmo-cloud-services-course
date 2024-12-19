@@ -51,6 +51,12 @@ Azure Content Delivery Network - предлагает разработчикам
 Azure Batch -  для эффективного выполнения крупномасштабных параллельных и высокопроизводительных 
 вычислительных (HPC) пакетных заданий в Azure.
 
+Описание выполнение работы:
+Поиск и изучение информации об общей работе сервиса, сопосотавление с категориями предыдущей таблицы, изучение отдельных функций использования сервиса. В моем случае логика сервисов Azure и AWS совпало только по Compute, Data Transfer, Storage.
+
 ![image](https://github.com/etherealSent/itmo-cloud-services-course/blob/main/clouds/lab2/image.png)
 
 Ссылка на таблицу: https://docs.google.com/spreadsheets/d/1O1dpVRdEaMJrlohfvMynzWn-rkVLg3cHzg0m5v4Ymqk/edit?usp=sharing
+
+Заключение:
+С помощью этой лаборатоной работы, я познакомился с частью основных сервисов Azure и сопоставил их с сервисами(аналогами) от AWS.
